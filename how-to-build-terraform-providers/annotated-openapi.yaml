@@ -23,6 +23,8 @@ externalDocs:
   url: http://swagger.io
 servers:
   - url: https://petstore3.swagger.io/api/v3
+security:
+  - api_key: []
 tags:
   - name: pet
     description: Everything about your Pets
@@ -64,10 +66,7 @@ paths:
           description: Pet not found
         '405':
           description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+
     post:
       tags:
         - pet
@@ -92,10 +91,7 @@ paths:
 
         '405':
           description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+
   /pet/findByStatus:
     get:
       tags:
@@ -128,10 +124,7 @@ paths:
             
         '400':
           description: Invalid status value
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+
   /pet/findByTags:
     get:
       tags:
@@ -160,10 +153,7 @@ paths:
                   $ref: '#/components/schemas/Pet'
         '400':
           description: Invalid tag value
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+
   /pet/{petId}:
     get:
       tags:
@@ -193,11 +183,6 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Pet not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
     post:
       tags:
         - pet
@@ -225,10 +210,7 @@ paths:
       responses:
         '405':
           description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+
     delete:
       tags:
         - pet
@@ -252,10 +234,7 @@ paths:
       responses:
         '400':
           description: Invalid pet value
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+
   /pet/{petId}/uploadImage:
     post:
       tags:
@@ -290,10 +269,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+
   /store/inventory:
     get:
       tags:
@@ -311,8 +287,7 @@ paths:
                 additionalProperties:
                   type: integer
                   format: int32
-      security:
-        - api_key: []
+
   /store/order:
     post:
       tags:
